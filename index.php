@@ -17,7 +17,7 @@
   
   	<div class="row" style="justify-content: center; align-items: center;">
   	
-  	<div class="col-4">
+  	<div class="col-4" style="background-color: aqua;">
   		Bienvenido a ABAS, el sistema de Administración de Beneficiarios del Área Social.
   	</div>
 
