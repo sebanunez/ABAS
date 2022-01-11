@@ -12,21 +12,24 @@
   </head>
   <body>
     
-  	<div class="container" style="text-align: center;">
-  	<h1>Administración de Beneficiarios del Área Social (ABAS)</h1>	
-  
-  	<div class="row" style="justify-content: center; align-items: center;">
+  	<div class="container-fluid" style="text-align: center;">
+  	<div class="row" id="cabecera" style="justify-content: center; align-items: center; background-color: red; height: 100px;">
+    <h1>Administración de Beneficiarios del Área Social (ABAS)</h1>	
+    </div>  
+
+  	<div class="row" style="justify-content: center; align-items: center; background-color: grey;">
   	
-  	<div class="col-4" style="background-color: aqua;">
+  	<div class="col-3" style="background-color: aqua;">
   		Bienvenido a ABAS, el sistema de Administración de Beneficiarios del Área Social.
   	</div>
 
-  	<div class="col-4">  	
+  	<div class="col-3">  	
   	<form>  
   	
-  	<div class="mb-2">
+  <div class="mb-2">
     <label for="exampleInputEmail1" class="form-label">Usuario</label>
     <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" required>
+    <!-- <p id="emailHelp">El usuario debe tener tal cosa.</p> -->
 	</div>
   
 	<div class="mb-2">
