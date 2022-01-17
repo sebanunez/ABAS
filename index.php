@@ -10,34 +10,41 @@
 
     <title>Administración de Beneficiarios del Área Social (ABAS) - BALP</title>
   </head>
-  <body>
+  <body style="background-color: lightsteelblue;">
     
-  	<div class="container-fluid" style="text-align: center;">
-  	<div class="row" id="cabecera" style="justify-content: center; align-items: center; background-color: red; height: 100px;">
+  	<div class="container-fluid" style="text-align: center; background: linear-gradient(to bottom, cornflowerblue, lightsteelblue);">
+
+  	<div class="row" id="cabecera" style="justify-content: center; align-items: center; background: linear-gradient(to bottom, cornflowerblue, powderblue); /*background-color: cornflowerblue; */height: 100px;">
     <h1>Administración de Beneficiarios del Área Social (ABAS)</h1>	
     </div>  
 
-  	<div class="row" style="justify-content: center; align-items: center; background-color: grey;">
+  	<div class="row mt-4" id="leyenda" style="justify-content: center; align-items: center;
+      ">
   	
-  	<div class="col-3" style="background-color: aqua;">
+  	<div class="col-7" style="background-color: aqua; border-radius: 10px; font-size: 20px;">
   		Bienvenido a ABAS, el sistema de Administración de Beneficiarios del Área Social.
   	</div>
+    
+    </div>
 
-  	<div class="col-3">  	
-  	<form>  
+    <div class="row mt-4" id="caja_login" style="justify-content: center; align-items: center;">
+
+  	<div class="col-6">  	
+  	<form method="post" action="index_fin.php">  
   	
-  <div class="mb-2">
+    <div class="mb-3">
     <label for="exampleInputEmail1" class="form-label">Usuario</label>
-    <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" required>
+    <input type="text" class="form-control" name="cajaUsuario" aria-describedby="emailHelp" required>
     <!-- <p id="emailHelp">El usuario debe tener tal cosa.</p> -->
 	</div>
   
-	<div class="mb-2">
+	<div class="mb-3">
     <label for="exampleInputPassword1" class="form-label">Contraseña</label>
-    <input type="password" class="form-control" id="exampleInputPassword1" required>
+    <input type="password" class="form-control" name="cajaPassword" required>
   	</div>
  	
-  	<button type="submit" class="btn btn-primary">Iniciar sesión</button>
+    <input type="submit" value="Buscar">
+  	<!-- <button type="submit" class="btn btn-primary">Iniciar sesión</button> -->
 
 	</form>
 	</div>
