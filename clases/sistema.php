@@ -19,22 +19,43 @@
 			$this->conectar($conex);
 
 			// Busco si existe alguna tupla con ese usuario y contraseña en la BD:
-			$registros = $conex->query("select * from usuario where nombre='$usu' and clave='$cla'") or die($conex->error);
+			$registros = $conex->query("select * from usuario where nombre='$usu'") or die($conex->error);
 
 
-			// SI ENCUENTRA EL REGISTRO:
+			// SI ENCUENTRA EL USUARIO:
 			if ($reg=$registros->fetch_array()) {
 				
-					echo "USUARIO"."<br>";
-					echo "Nombre: ".$reg['nombre']."<br>";
-					echo "Clave: ".$reg['clave']."<br>";
-					echo "Rol: ".$reg['rol']."<br>";
-					echo "DNI: ".$reg['dni']."<br>";
-					echo "Apellido y Nombre: ".$reg['apynom']."<br>";
+
+				// Si encuentra la clave:
+				if ($reg['clave']==$cla) {
+					
+						echo "USUARIO"."<br>";
+						echo "Nombre: ".$reg['nombre']."<br>";
+						echo "Clave: ".$reg['clave']."<br>";
+						echo "Rol: ".$reg['rol']."<br>";
+						echo "DNI: ".$reg['dni']."<br>";
+						echo "Apellido y Nombre: ".$reg['apynom']."<br>";
+
+					}
+
+					else
+					
+					{
+						echo "Contraseña incorrecta.";
+						?>
+
+						<a href="index.php">Intente nuevamente</a>
+
+						<?php
+								
+					}
+
 				}
-				else
+
+				else // Si no existe el usuario
+
 				{
-					echo "Usuario y/o contraseña incorrectos.";
+					echo "Usuario inexistente.";
 					?>
 
 					<a href="index.php">Intente nuevamente</a>
