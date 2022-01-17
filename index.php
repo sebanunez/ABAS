@@ -29,7 +29,9 @@
 
     <div class="row mt-4" id="caja_login" style="justify-content: center; align-items: center;">
 
-  	<div class="col-6">  	
+  	<div class="col-6">  
+
+      
   	<form method="post" action="index_fin.php">  
   	
     <div class="mb-3">
@@ -43,8 +45,8 @@
     <input type="password" class="form-control" name="cajaPassword" required>
   	</div>
  	
-    <input type="submit" value="Buscar">
-  	<!-- <button type="submit" class="btn btn-primary">Iniciar sesión</button> -->
+    <!-- <input type="submit" value="Buscar"> -->
+  	<button type="submit" class="btn btn-primary">Iniciar sesión</button>
 
 	</form>
 	</div>

@@ -40,6 +40,9 @@
     
     </div>
 
+
+    <!--
+
     <div class="row mt-4" id="caja_login" style="justify-content: center; align-items: center;">
 
   	<div class="col-6">  	
@@ -48,7 +51,7 @@
   <div class="mb-3">
     <label for="exampleInputEmail1" class="form-label">Usuario</label>
     <input type="text" class="form-control" id="cajaUsuario" aria-describedby="emailHelp" required>
-    <!-- <p id="emailHelp">El usuario debe tener tal cosa.</p> -->
+    
 	</div>
   
 	<div class="mb-3">
@@ -62,6 +65,9 @@
 	</div>
 
 	</div>
+
+  -->
+
   	</div>
     
 

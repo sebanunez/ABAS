@@ -1,6 +1,6 @@
 <?php 
 
-	require_once ("usuario.php");
+	include ("usuario.php");
 
 	class Sistema {
 
@@ -18,8 +18,8 @@
 
 			$this->conectar($conex);
 
-			$registros = $conex->query("select * from usuario") or die($conex->error);
-			// Revisar qué pasa con la consulta SQL.
+			// Busco si existe alguna tupla con ese usuario y contraseña en la BD:
+			$registros = $conex->query("select * from usuario where nombre='$usu' and clave='$cla'") or die($conex->error);
 
 
 			// SI ENCUENTRA EL REGISTRO:
