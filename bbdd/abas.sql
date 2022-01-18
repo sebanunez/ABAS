@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 18-01-2022 a las 15:37:07
+-- Tiempo de generación: 18-01-2022 a las 19:10:34
 -- Versión del servidor: 10.4.22-MariaDB
--- Versión de PHP: 7.4.27
+-- Versión de PHP: 8.1.1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -20,6 +20,69 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `abas`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `beneficiario`
+--
+
+CREATE TABLE `beneficiario` (
+  `id` int(11) NOT NULL,
+  `codigo` int(11) NOT NULL,
+  `nombre` varchar(50) NOT NULL,
+  `nomReferente` varchar(50) NOT NULL,
+  `estado` varchar(10) NOT NULL,
+  `fechaAlta` date NOT NULL,
+  `fechaActivo` date NOT NULL,
+  `fechaBaja` date NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `mail`
+--
+
+CREATE TABLE `mail` (
+  `id` int(11) NOT NULL,
+  `email` varchar(50) NOT NULL,
+  `nomContacto` varchar(50) NOT NULL,
+  `codInstitucion` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `servicio`
+--
+
+CREATE TABLE `servicio` (
+  `id` int(11) NOT NULL,
+  `desayuno` tinyint(1) NOT NULL,
+  `almuerzo` tinyint(1) NOT NULL,
+  `merienda` tinyint(1) NOT NULL,
+  `cena` tinyint(1) NOT NULL,
+  `bolson` tinyint(1) NOT NULL,
+  `descripcion` varchar(200) NOT NULL,
+  `horario` varchar(50) NOT NULL,
+  `codInstitucion` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `solicitante`
+--
+
+CREATE TABLE `solicitante` (
+  `id` int(11) NOT NULL,
+  `codigo` int(11) NOT NULL,
+  `nombre` varchar(50) NOT NULL,
+  `nomReferente` varchar(50) NOT NULL,
+  `fecha` date NOT NULL,
+  `estado` varchar(10) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -49,6 +112,30 @@ INSERT INTO `usuario` (`id`, `nombre`, `clave`, `rol`, `dni`, `apynom`) VALUES
 --
 
 --
+-- Indices de la tabla `beneficiario`
+--
+ALTER TABLE `beneficiario`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indices de la tabla `mail`
+--
+ALTER TABLE `mail`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indices de la tabla `servicio`
+--
+ALTER TABLE `servicio`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indices de la tabla `solicitante`
+--
+ALTER TABLE `solicitante`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indices de la tabla `usuario`
 --
 ALTER TABLE `usuario`
@@ -57,6 +144,24 @@ ALTER TABLE `usuario`
 --
 -- AUTO_INCREMENT de las tablas volcadas
 --
+
+--
+-- AUTO_INCREMENT de la tabla `mail`
+--
+ALTER TABLE `mail`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `servicio`
+--
+ALTER TABLE `servicio`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `solicitante`
+--
+ALTER TABLE `solicitante`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `usuario`

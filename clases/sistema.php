@@ -12,6 +12,13 @@
 			if ($conexion->connect_error) die ("Problemas con la conexión."); 
 
 		}
+
+		public function desconectar (&$conexion,$registros){
+
+			mysqli_free_result($registros);
+			mysqli_close($conexion);
+
+		}
 		
 
 		public function autenticarUsuario($usu, $cla) {
@@ -63,6 +70,8 @@
 					<?php
 
 				}
+
+				$this->desconectar($conex,$registros);
 
 			} // FIN FUNCIÓN Autenticar
 
