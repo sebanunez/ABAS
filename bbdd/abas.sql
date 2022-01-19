@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 18-01-2022 a las 19:10:34
+-- Tiempo de generación: 19-01-2022 a las 17:48:12
 -- Versión del servidor: 10.4.22-MariaDB
 -- Versión de PHP: 8.1.1
 
@@ -36,6 +36,34 @@ CREATE TABLE `beneficiario` (
   `fechaAlta` date NOT NULL,
   `fechaActivo` date NOT NULL,
   `fechaBaja` date NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `direccion`
+--
+
+CREATE TABLE `direccion` (
+  `id` int(11) NOT NULL,
+  `calle` varchar(50) NOT NULL,
+  `nro` varchar(10) NOT NULL,
+  `entre` varchar(50) NOT NULL,
+  `barrio` varchar(50) NOT NULL,
+  `codInstitucion` int(11) NOT NULL,
+  `codLocalidad` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `localidad`
+--
+
+CREATE TABLE `localidad` (
+  `id` int(11) NOT NULL,
+  `codigo` int(11) NOT NULL,
+  `nombre` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -87,6 +115,20 @@ CREATE TABLE `solicitante` (
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `telefono`
+--
+
+CREATE TABLE `telefono` (
+  `id` int(11) NOT NULL,
+  `nro` int(11) NOT NULL,
+  `tipo` varchar(10) NOT NULL,
+  `nomContacto` varchar(50) NOT NULL,
+  `codInstitucion` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `usuario`
 --
 
@@ -118,6 +160,18 @@ ALTER TABLE `beneficiario`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indices de la tabla `direccion`
+--
+ALTER TABLE `direccion`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indices de la tabla `localidad`
+--
+ALTER TABLE `localidad`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indices de la tabla `mail`
 --
 ALTER TABLE `mail`
@@ -136,6 +190,12 @@ ALTER TABLE `solicitante`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indices de la tabla `telefono`
+--
+ALTER TABLE `telefono`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indices de la tabla `usuario`
 --
 ALTER TABLE `usuario`
@@ -144,6 +204,12 @@ ALTER TABLE `usuario`
 --
 -- AUTO_INCREMENT de las tablas volcadas
 --
+
+--
+-- AUTO_INCREMENT de la tabla `direccion`
+--
+ALTER TABLE `direccion`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `mail`
@@ -161,6 +227,12 @@ ALTER TABLE `servicio`
 -- AUTO_INCREMENT de la tabla `solicitante`
 --
 ALTER TABLE `solicitante`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `telefono`
+--
+ALTER TABLE `telefono`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
