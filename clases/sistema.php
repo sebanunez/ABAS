@@ -45,23 +45,6 @@
 						/*if ($_SESSION['Rol'] == 'ADMINISTRADOR') {
 							*/
 							echo "<script language='javascript'>window.location='principal.php'</script>";
-/*
-						}
-						else
-						{
-
-							echo "<script language='javascript'>window.location='menu_oper.php'</script>";
-
-						}
-
-						/*
-						echo "USUARIO"."<br>";
-						echo "Nombre: ".$reg['nombre']."<br>";
-						echo "Clave: ".$reg['clave']."<br>";
-						echo "Rol: ".$reg['rol']."<br>";
-						echo "DNI: ".$reg['dni']."<br>";
-						echo "Apellido y Nombre: ".$reg['apynom']."<br>";
-						*/
 
 					}
 
