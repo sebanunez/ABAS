@@ -36,24 +36,46 @@
 				// Si encuentra la clave:
 				if ($reg['clave']==$cla) {
 					
+						// Inicio sesión con los datos ingresados:
+						session_start();
+						$_SESSION['Usuario'] = $usu;
+						$_SESSION['Rol'] = $reg['rol'];
+
+						// Verifico qué rol tiene el usuario y lo redirijo a su pantalla correspondiente:
+						/*if ($_SESSION['Rol'] == 'ADMINISTRADOR') {
+							*/
+							echo "<script language='javascript'>window.location='principal.php'</script>";
+/*
+						}
+						else
+						{
+
+							echo "<script language='javascript'>window.location='menu_oper.php'</script>";
+
+						}
+
+						/*
 						echo "USUARIO"."<br>";
 						echo "Nombre: ".$reg['nombre']."<br>";
 						echo "Clave: ".$reg['clave']."<br>";
 						echo "Rol: ".$reg['rol']."<br>";
 						echo "DNI: ".$reg['dni']."<br>";
 						echo "Apellido y Nombre: ".$reg['apynom']."<br>";
+						*/
 
 					}
 
 					else
 					
 					{
-						echo "Contraseña incorrecta.";
+						echo "Contraseña incorrecta. "."<a href='index.php'>"."Intente nuevamente"."</a></center>";
+						/*session_unset();*/
+						/*echo "Contraseña incorrecta.";
 						?>
 
 						<a href="index.php">Intente nuevamente</a>
 
-						<?php
+						<?php*/
 								
 					}
 

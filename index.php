@@ -24,7 +24,7 @@
     </div>  
 
     <div class="row mt-4 mb-4 g-4" style="justify-content: center; align-items: center;"> <!-- Div Cuadro -->
-    <div class="col col-sm-3" style="border-radius: 10px; background: linear-gradient(to bottom, royalblue, lightblue);">
+    <div class="col col-sm-5" style="border-radius: 10px; background: linear-gradient(to bottom, royalblue, lightblue);">
 
     <!-- LEYENDA -->
   	<div class="row mt-4" id="leyenda" style="justify-content: center; align-items: center;">

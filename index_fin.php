@@ -29,7 +29,7 @@
 
         $sist = new Sistema();
 
-        $usu = $_REQUEST['cajaUsuario'];
+        $usu = strtoupper($_REQUEST['cajaUsuario']);
         $cla = $_REQUEST['cajaPassword'];
 
         $sist->autenticarUsuario($usu, $cla);
