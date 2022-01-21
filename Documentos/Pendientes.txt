@@ -1,3 +1,4 @@
 Programar cierre de sesión en X minutos
 Restaurar contraseña
 Crear tabla Proveedores
+revisar función desconectar ---> mysqli_free...

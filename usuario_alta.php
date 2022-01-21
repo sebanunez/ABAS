@@ -89,7 +89,7 @@
                   <div class="mb-3">
                     <div class="form-text mb-2" style="color: black; text-align: left;">Ingrese el DNI:
                     </div>
-                    <input type="text" required placeholder="DNI" class="form-control" name="cajaDNI">
+                    <input type="number" required placeholder="DNI" class="form-control" name="cajaDNI">
                   </div>
  
                    <div class="mb-3">
@@ -131,8 +131,8 @@
                     <div class="mb-3">
                       <div class="form-text mb-2" style="color: black; text-align: left;">Seleccione un Rol</div>
                       <select id="inputState" class="form-select" aria-label="tipo" name="cajaRol">
-                        <option selected>OPERADOR</option>
-                        <option>ADMINISTRADOR</option>
+                        <option selected value="OPERADOR">OPERADOR</option>
+                        <option value="ADMINISTRADOR">ADMINISTRADOR</option>
                       </select>
                     </div>                 
       

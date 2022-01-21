@@ -15,7 +15,7 @@
 
 		public function desconectar (&$conexion,$registros){
 
-			mysqli_free_result($registros);
+			//mysqli_free_result($registros);
 			mysqli_close($conexion);
 
 		}
@@ -31,9 +31,11 @@
 
 			// SI ENCUENTRA EL USUARIO:
 			if ($reg=$registros->fetch_array()) {
-				
-				echo "ATENCIÓN: Ya existe el usuario ".$apynom.". Elija uno distinto."; 
 				?>
+				<div class="alert alert-danger" role="alert">
+				ATENCIÓN: Ya existe el usuario <?php echo $usu ?>. Elija uno distinto. 
+				</div>
+				
 
                  <div class="col mt-5 mb-5">   
     
@@ -90,8 +92,8 @@
                     <div class="mb-3">
                       <div class="form-text mb-2" style="color: black; text-align: left;">Seleccione un Rol</div>
                       <select id="inputState" class="form-select" aria-label="tipo" name="cajaRol">
-                        <option selected>OPERADOR</option>
-                        <option>ADMINISTRADOR</option>
+                        <option selected  value="OPERADOR">OPERADOR</option>
+                        <option value="ADMINISTRADOR">ADMINISTRADOR</option>
                       </select>
                     </div>                 
       
@@ -107,8 +109,14 @@
 				else // Si no existe el usuario
 
 				{
-					$registros = $conex->query("insert into usuario (nombre, clave, rol, dni, apynom, domicilio, telFijo, telMovil, email) values ($usu, $cla, $rol, $dni, $apynom, $domicilio, $telFijo, $telMovil, $email)") or die($conex->error);
-					echo "Alta de usuario exitosa";
+					$registros = $conex->query("insert into usuario (nombre, clave, rol, dni, apynom, domicilio, telFijo, telMovil, email) values ('$usu', '$cla', '$rol', '$dni', '$apynom', '$domicilio', '$telFijo', '$telMovil', '$email')") or die($conex->error);
+					?>
+					<div class="alert alert-success" role="alert">
+  					¡Alta de usuario exitosa!
+  					</div>
+  					<a href="usuario_alta.php" class="btn btn-primary">Cargar otro usuario</a>
+  					<a href="principal.php" class="btn btn-primary">Volver al menú principal</a>
+  					<?php
 
 				}
 
@@ -147,14 +155,15 @@
 					else
 					
 					{
-						echo "Contraseña incorrecta. "."<a href='index.php'>"."Intente nuevamente"."</a></center>";
-						/*session_unset();*/
-						/*echo "Contraseña incorrecta.";
-						?>
+					
+					?>
+						<div class="alert alert-danger" role="alert">
+							Contraseña Incorrecta
+						</div>
+						<a href="index.php" class="btn btn-primary">Reintentar</a>
 
-						<a href="index.php">Intente nuevamente</a>
+					<?php
 
-						<?php*/
 								
 					}
 
@@ -163,10 +172,12 @@
 				else // Si no existe el usuario
 
 				{
-					echo "Usuario inexistente.";
+					
 					?>
-
-					<a href="index.php">Intente nuevamente</a>
+					<div class="alert alert-danger" role="alert">
+						Usuario inexistente
+					</div>
+					<a href="index.php" class="btn btn-primary">Reintentar</a>
 
 					<?php
 

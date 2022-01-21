@@ -22,22 +22,33 @@ session_destroy();
   <div class="container-fluid" style="text-align: center; background: linear-gradient(to bottom, cornflowerblue, lightsteelblue);">
 
     <!-- CABECERA -->
-  	<div class="row" id="cabecera" style="justify-content: center; align-items: center; background: linear-gradient(to bottom, cornflowerblue, powderblue); /*background-color: cornflowerblue; */height: 100px;">
-      <h1>Administración de Beneficiarios del Área Social (ABAS)</h1>	
-    
-    </div>  
+    <div class="row" id="cabecera" style="justify-content: center; align-items: center; background: linear-gradient(to bottom, cornflowerblue, powderblue); height: 100px;">
+      
+      <div class="row m-1" style="justify-content: center; align-items: center;">
+        <div class="col-1">
+          <img src="images/logo.png" width="100px" height="100px">
+        </div>
+        
+        <div class="col-11">
+          <h1>ABAS</h1>
+        </div>
+        
+      
+      </div>
+           
+    </div>  <!-- FIN CABECERA -->
 
     <div class="row mt-4 mb-4 g-4" style="justify-content: center; align-items: center;"> <!-- Div Cuadro -->
     <div class="col col-sm-5" style="border-radius: 10px; background: linear-gradient(to bottom, royalblue, lightblue);">
 
-    <!-- LEYENDA -->
+    <!-- LEYENDA 
   	<div class="row mt-4" id="leyenda" style="justify-content: center; align-items: center;">
   	
     	<div class="col-7" style="background-color: aqua; border-radius: 10px; font-size: 20px;">
     		Bienvenido a ABAS, el sistema de Administración de Beneficiarios del Área Social.
     	</div>
     
-    </div>
+    </div>  -->
 
 
     <!-- CAJA LOGIN -->

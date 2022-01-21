@@ -129,7 +129,7 @@
                          
                         <div class="d-grid gap-2">
                            <p>Administración de las cuentas de usuario con acceso a este sistema.</p> 
-                           <a href="" class="btn btn-primary">ALTA</a>
+                           <a href="usuario_alta.php" class="btn btn-primary">ALTA</a>
                            <a href="" class="btn btn-primary">BAJA</a>
                            <a href="" class="btn btn-primary">MODIFICAR</a>
                            <a href="" class="btn btn-primary">CONSULTA</a>

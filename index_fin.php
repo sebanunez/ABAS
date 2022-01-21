@@ -1,3 +1,9 @@
+<?php
+  
+  session_start();
+
+?>
+
 <!doctype html>
 <html lang="es">
   <head>
@@ -14,9 +20,22 @@
     
   	<div class="container-fluid" style="text-align: center; background: linear-gradient(to bottom, cornflowerblue, lightsteelblue);">
 
-  	<div class="row" id="cabecera" style="justify-content: center; align-items: center; background: linear-gradient(to bottom, cornflowerblue, powderblue); /*background-color: cornflowerblue; */height: 100px;">
-    <h1>Administración de Beneficiarios del Área Social (ABAS)</h1>	
-    </div>  
+    <!-- CABECERA -->
+    <div class="row" id="cabecera" style="justify-content: center; align-items: center; background: linear-gradient(to bottom, cornflowerblue, powderblue); height: 100px;">
+      
+      <div class="row m-1" style="justify-content: center; align-items: center;">
+        <div class="col-1">
+          <img src="images/logo.png" width="100px" height="100px">
+        </div>
+        
+        <div class="col-11">
+          <h1>ABAS</h1>
+        </div>
+        
+      
+      </div>
+           
+    </div>  <!-- FIN CABECERA -->
 
   	<div class="row mt-4" id="leyenda" style="justify-content: center; align-items: center;
       ">

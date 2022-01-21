@@ -1,3 +1,8 @@
+<?php
+  
+  session_start();
+
+?>
 <!doctype html>
 <html lang="es">
   <head>
@@ -14,26 +19,51 @@
     
   	<div class="container-fluid" style="text-align: center; background: linear-gradient(to bottom, cornflowerblue, lightsteelblue);">
 
-  	<div class="row" id="cabecera" style="justify-content: center; align-items: center; background: linear-gradient(to bottom, cornflowerblue, powderblue); /*background-color: cornflowerblue; */height: 100px;">
-    <h1>Administración de Beneficiarios del Área Social (ABAS)</h1>	
-    </div>  
+    <!-- CABECERA -->
+    <div class="row" id="cabecera" style="justify-content: center; align-items: center; background: linear-gradient(to bottom, cornflowerblue, powderblue); height: 100px;">
+      
+      <div class="row m-1" style="justify-content: center; align-items: center;">
+        <div class="col-1">
+          <img src="images/logo.png" width="100px" height="100px">
+        </div>
+        
+        <div class="col-9">
+          <h1>ABAS</h1>
+        </div>
+        
+        <div class="col-2">
+          Usuario: <strong><?php echo $_SESSION['Usuario']; ?></strong>
+          <div class="d-grid gap-2">
+              
+                <?php      
+                  echo "<a href='index.php' class='btn btn-primary'>"."Cerrar Sesión"."</a>";
+                
+                ?>
+                          
+         </div>
+
+        </div>
+      
+      </div>
+           
+    </div>  <!-- FIN CABECERA -->  
 
   	<div class="row mt-4" id="leyenda" style="justify-content: center; align-items: center;
       ">
   	
-  	<div class="col-7" style="background-color: aqua; border-radius: 10px; font-size: 20px;">
+  	<div class="col-7" style="background: linear-gradient(to bottom, royalblue, lightblue); border-radius: 10px; font-size: 20px;">
  
   		<?php
 
         include ("clases/sistema.php");
 
         $sist = new Sistema();
-        $apynom = strtoupper($_REQUEST['cajaApyNom']);
-        $dni = strtoupper($_REQUEST['cajaDNI']);
-        $domicilio = strtoupper($_REQUEST['cajaDomicilio']);
-        $telFijo = strtoupper($_REQUEST['cajaTelFijo']);
-        $telMovil = strtoupper($_REQUEST['cajaTelMovil']);
-        $email = strtoupper($_REQUEST['cajaEmail']);
+        $apynom = $_REQUEST['cajaApyNom'];
+        $dni = $_REQUEST['cajaDNI'];
+        $domicilio = $_REQUEST['cajaDomicilio'];
+        $telFijo = $_REQUEST['cajaTelFijo'];
+        $telMovil = $_REQUEST['cajaTelMovil'];
+        $email = $_REQUEST['cajaEmail'];
         $usu = strtoupper($_REQUEST['cajaUsuario']);
         $cla = $_REQUEST['cajaClave'];
         $rol = $_REQUEST['cajaRol'];
