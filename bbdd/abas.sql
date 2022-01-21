@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 19-01-2022 a las 17:48:12
+-- Tiempo de generación: 21-01-2022 a las 20:17:36
 -- Versión del servidor: 10.4.22-MariaDB
 -- Versión de PHP: 8.1.1
 
@@ -138,16 +138,20 @@ CREATE TABLE `usuario` (
   `clave` varchar(30) NOT NULL,
   `rol` varchar(15) NOT NULL,
   `dni` int(8) NOT NULL,
-  `apynom` varchar(50) NOT NULL
+  `apynom` varchar(50) NOT NULL,
+  `domicilio` varchar(50) NOT NULL,
+  `telFijo` varchar(20) NOT NULL,
+  `telMovil` varchar(20) NOT NULL,
+  `email` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `usuario`
 --
 
-INSERT INTO `usuario` (`id`, `nombre`, `clave`, `rol`, `dni`, `apynom`) VALUES
-(1, 'sebastian', 'seba', 'ADMINISTRADOR', 34816804, 'Nuñez Sebastian'),
-(3, 'lucio', 'lucio', 'OPERADOR', 30303030, 'Arrua Lucio');
+INSERT INTO `usuario` (`id`, `nombre`, `clave`, `rol`, `dni`, `apynom`, `domicilio`, `telFijo`, `telMovil`, `email`) VALUES
+(1, 'SEBASTIAN', 'seba', 'ADMINISTRADOR', 34816804, 'Nuñez Sebastian', '', '', '', ''),
+(3, 'LUCIO', 'lucio', 'OPERADOR', 30303030, 'Arrua Lucio', '', '', '', '');
 
 --
 -- Índices para tablas volcadas
@@ -239,7 +243,7 @@ ALTER TABLE `telefono`
 -- AUTO_INCREMENT de la tabla `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
