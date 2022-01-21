@@ -1,0 +1,3 @@
+Programar cierre de sesión en X minutos
+Restaurar contraseña
+Crear tabla Proveedores
