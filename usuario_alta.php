@@ -135,9 +135,14 @@
                         <option value="ADMINISTRADOR">ADMINISTRADOR</option>
                       </select>
                     </div>                 
-      
-                    <button type="submit" class="btn btn-primary">Crear Usuario</button>
- 
+                    <div class="row">
+                    <div class="col-6" style="text-align:left;"> 
+                      <a  href="principal.php" class="btn btn-primary">Cancelar</a>
+                    </div>
+                    <div class="col" style="text-align:right;"> 
+                      <button type="submit" class="btn btn-primary">Crear Usuario</button>
+                    </div>
+                    </div>
                 </form>
 
               </div>

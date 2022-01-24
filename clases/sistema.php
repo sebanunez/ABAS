@@ -109,7 +109,7 @@
 				else // Si no existe el usuario
 
 				{
-					$registros = $conex->query("insert into usuario (nombre, clave, rol, dni, apynom, domicilio, telFijo, telMovil, email) values ('$usu', '$cla', '$rol', '$dni', '$apynom', '$domicilio', '$telFijo', '$telMovil', '$email')") or die($conex->error);
+					$registros = $conex->query("insert into usuario (nombre, clave, rol, dni, apynom, domicilio, telFijo, telMovil, email, estado) values ('$usu', '$cla', '$rol', '$dni', '$apynom', '$domicilio', '$telFijo', '$telMovil', '$email', 'ACTIVO')") or die($conex->error);
 					?>
 					<div class="alert alert-success" role="alert">
   					¡Alta de usuario exitosa!
@@ -186,6 +186,82 @@
 				$this->desconectar($conex,$registros);
 
 			} // FIN FUNCIÓN Autenticar
+
+
+
+		public function consultar ($sist, $criterio, $busqueda)
+
+			{
+
+				$this->conectar($conex);
+
+				?>
+				<form>
+
+                  <?php
+
+                  	
+                  	switch ($criterio) {
+                  		case 'USUARIO':
+                  			$registros = $conex->query("select * from usuario where nombre='$busqueda'") or die($conex->error);
+                  			break;
+                  		case 'APELLIDO':
+                  			$aux='%'.$busqueda.'%';
+                  			$registros = $conex->query("select * from usuario where apynom LIKE '$aux'") or die($conex->error);
+                  			break;
+                  		case 'NOMBRE':
+                  			$aux='%'.$busqueda.'%';
+                  			$registros = $conex->query("select * from usuario where apynom LIKE '$aux'") or die($conex->error);
+                  			break;
+                  		case 'DNI':
+                  			$registros = $conex->query("select * from usuario where dni='$busqueda'") or die($conex->error);
+                  			break;
+                  		case 'ESTADO':
+                  			$registros = $conex->query("select * from usuario where estado='$busqueda'") or die($conex->error);
+                  			break;
+                  				      	}
+
+                  	while ($reg=$registros->fetch_array()) {
+
+                  		?>
+                  		<div class="mb-3">
+                    
+                   			<div><input value="<?php echo $reg['nombre'] ?>" type="text" class="form-control"></div>
+                   			<div><input value="<?php echo $reg['apynom'] ?>" type="text" class="form-control"></div>
+                   			<div><input value="<?php echo $reg['dni'] ?>" type="text" class="form-control"></div>
+                   			<div><input value="<?php echo $reg['domicilio'] ?>" type="text" class="form-control"></div>
+                   			<div><input value="<?php echo $reg['telFijo'] ?>" type="text" class="form-control"></div>
+                   			<div><input value="<?php echo $reg['telMovil'] ?>" type="text" class="form-control"></div>
+                   			<div><input value="<?php echo $reg['email'] ?>" type="text" class="form-control"></div>
+                   			<div><input value="<?php echo $reg['rol'] ?>" type="text" class="form-control"></div>
+                   			<div><input value="<?php echo $reg['estado'] ?>" type="text" class="form-control"></div>
+                   			
+                  		</div>
+                  
+                  		
+
+                   		<?php
+
+
+                  	} //else { echo "No se encontraron resultados"; }
+
+                  ?>
+                 
+                <div class="row">
+                    		<div class="col-6" style="text-align:left;"> 
+                      			<a  href="principal.php" class="btn btn-primary">Menú Principal</a>
+                      		</div>
+                    		<div class="col" style="text-align:right;"> 
+                      			<a  href="usuario_consulta.php" class="btn btn-primary">Nueva Búsqueda</a>
+                    		</div>
+                   		</div>  
+                </form>
+
+                <?php
+
+              $this->desconectar($conex,$registros);
+
+			}
 
 		}
 

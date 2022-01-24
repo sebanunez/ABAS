@@ -49,12 +49,11 @@
         </div>
       
       </div>
-      	
-    
+      	   
     </div>  
 
     <!-- CAJA AZUL -->
-    <div class="row mt-4 mb-4 g-4" style="justify-content: center; align-items: center;"> <!-- Div Cuadro -->
+    <div class="row mt-4 mb-4 g-4" style="justify-content: center; align-items: center;"> 
       <div class="col col-sm-5" style="border-radius: 10px; background: linear-gradient(to bottom, royalblue, lightblue);">
 
     <!-- LEYENDA -->
@@ -132,7 +131,7 @@
                            <a href="usuario_alta.php" class="btn btn-primary">ALTA</a>
                            <a href="" class="btn btn-primary">BAJA</a>
                            <a href="" class="btn btn-primary">MODIFICAR</a>
-                           <a href="" class="btn btn-primary">CONSULTA</a>
+                           <a href="usuario_consulta.php" class="btn btn-primary">CONSULTA</a>
                         </div>
  
                     </div>

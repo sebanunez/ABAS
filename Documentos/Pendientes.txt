@@ -2,3 +2,5 @@ Programar cierre de sesión en X minutos
 Restaurar contraseña
 Crear tabla Proveedores
 revisar función desconectar ---> mysqli_free...
+Administrador --> Incluir en Modificación de usuario: Activar o inactivar operador
+Verificar en el login el estado de la cuenta (activo o inactivo)
