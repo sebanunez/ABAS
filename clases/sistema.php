@@ -194,9 +194,9 @@
 			{
 
 				$this->conectar($conex);
-
+				//$control= 0; // 0 --> no hay resultados y 1 --> hay resultados
 				?>
-				<form>
+				
 
                   <?php
 
@@ -220,42 +220,135 @@
                   			$registros = $conex->query("select * from usuario where estado='$busqueda'") or die($conex->error);
                   			break;
                   				      	}
-
-                  	while ($reg=$registros->fetch_array()) {
-
+                 		               		
                   		?>
-                  		<div class="mb-3">
-                    
-                   			<div><input value="<?php echo $reg['nombre'] ?>" type="text" class="form-control"></div>
-                   			<div><input value="<?php echo $reg['apynom'] ?>" type="text" class="form-control"></div>
-                   			<div><input value="<?php echo $reg['dni'] ?>" type="text" class="form-control"></div>
-                   			<div><input value="<?php echo $reg['domicilio'] ?>" type="text" class="form-control"></div>
-                   			<div><input value="<?php echo $reg['telFijo'] ?>" type="text" class="form-control"></div>
-                   			<div><input value="<?php echo $reg['telMovil'] ?>" type="text" class="form-control"></div>
-                   			<div><input value="<?php echo $reg['email'] ?>" type="text" class="form-control"></div>
-                   			<div><input value="<?php echo $reg['rol'] ?>" type="text" class="form-control"></div>
-                   			<div><input value="<?php echo $reg['estado'] ?>" type="text" class="form-control"></div>
-                   			
-                  		</div>
+                 		
+									
+								<center>
+                 					<table style="text-align: center; box-shadow: 5px 5px 5px grey;">
+                  						<tr style="background: royalblue; color: white;">
+                  							<th style="border: 1px solid black; padding: 5px;">USUARIO</th>
+                  							<th style="border: 1px solid black; padding: 5px;">APELLIDO Y NOMBRE</th>
+                  							<th style="border: 1px solid black; padding: 5px;">DNI</th>
+                  							<th style="border: 1px solid black; padding: 5px;">DOMICILIO</th>
+                  							<th style="border: 1px solid black; padding: 5px;">TEL. FIJO</th>
+                  							<th style="border: 1px solid black; padding: 5px;">TEL. MÓVIL</th>
+                  							<th style="border: 1px solid black; padding: 5px;">E-MAIL</th>
+                  							<th style="border: 1px solid black; padding: 5px;">ROL</th>
+                  							<th style="border: 1px solid black; padding: 5px;">ESTADO</th>
+                  						</tr>
+
+							<?php
+
+							$hay = false;
+							$fondo = false;
+
+                  			while ($reg=$registros->fetch_array()) {
+
+                  			
+                  				if (!$fondo) {
+ 								
+                  					?>
+
+                  					<tr style="background: lightsteelblue;">
+                  							<td style="border: 1px solid black; padding: 5px;"><?php echo $reg['nombre'] ?></td>
+                  							<td style="border: 1px solid black; padding: 5px;"><?php echo $reg['apynom'] ?></td>
+                  							<td style="border: 1px solid black; padding: 5px;"><?php echo $reg['dni'] ?></td>
+                  							<td style="border: 1px solid black; padding: 5px;"><?php echo $reg['domicilio'] ?></td>
+                  							<td style="border: 1px solid black; padding: 5px;"><?php echo $reg['telFijo'] ?></td>
+                  							<td style="border: 1px solid black; padding: 5px;"><?php echo $reg['telMovil'] ?></td>
+                  							<td style="border: 1px solid black; padding: 5px;"><?php echo $reg['email'] ?></td>
+                  							<td style="border: 1px solid black; padding: 5px;"><?php echo $reg['rol'] ?></td>
+                  							<td style="border: 1px solid black; padding: 5px;"><?php echo $reg['estado'] ?></td>
+                  						</tr>
+
+                  					<?php
+
+ 									$fondo = true;
+								
+								}else{
+    							
+    								
+    								?>
+
+    								<tr style="background: lightblue;">
+                  							<td style="border: 1px solid black; padding: 5px;"><?php echo $reg['nombre'] ?></td>
+                  							<td style="border: 1px solid black; padding: 5px;"><?php echo $reg['apynom'] ?></td>
+                  							<td style="border: 1px solid black; padding: 5px;"><?php echo $reg['dni'] ?></td>
+                  							<td style="border: 1px solid black; padding: 5px;"><?php echo $reg['domicilio'] ?></td>
+                  							<td style="border: 1px solid black; padding: 5px;"><?php echo $reg['telFijo'] ?></td>
+                  							<td style="border: 1px solid black; padding: 5px;"><?php echo $reg['telMovil'] ?></td>
+                  							<td style="border: 1px solid black; padding: 5px;"><?php echo $reg['email'] ?></td>
+                  							<td style="border: 1px solid black; padding: 5px;"><?php echo $reg['rol'] ?></td>
+                  							<td style="border: 1px solid black; padding: 5px;"><?php echo $reg['estado'] ?></td>
+                  						</tr>
+
+    								<?php
+
+    								$fondo = false;
+								
+								}
+
+
+                  			?>
+                  				<!-- <div class="row"> 
+
+                  					
+                  						<tr>
+                  							<td style="border: 1px solid black; padding: 5px;"><?php echo $reg['nombre'] ?></td>
+                  							<td style="border: 1px solid black; padding: 5px;"><?php echo $reg['apynom'] ?></td>
+                  							<td style="border: 1px solid black; padding: 5px;"><?php echo $reg['dni'] ?></td>
+                  							<td style="border: 1px solid black; padding: 5px;"><?php echo $reg['domicilio'] ?></td>
+                  							<td style="border: 1px solid black; padding: 5px;"><?php echo $reg['telFijo'] ?></td>
+                  							<td style="border: 1px solid black; padding: 5px;"><?php echo $reg['telMovil'] ?></td>
+                  							<td style="border: 1px solid black; padding: 5px;"><?php echo $reg['email'] ?></td>
+                  							<td style="border: 1px solid black; padding: 5px;"><?php echo $reg['rol'] ?></td>
+                  							<td style="border: 1px solid black; padding: 5px;"><?php echo $reg['estado'] ?></td>
+                  						</tr>
+                  					
+		                  		</div>   -->
                   
                   		
 
-                   		<?php
+                   							<?php
+
+                   							$hay = true; // Significa que hay al menos un resultado
 
 
-                  	} //else { echo "No se encontraron resultados"; }
+                  							} // Fin While
 
-                  ?>
+
+                  							if (!$hay){  // Si no encontró resultados
+
+                  								?>
+
+                  			               		<div class="alert alert-warning" role="alert">
+  													<strong>No se encontraron resultados</strong>
+												</div>
+
+											<?php
+
+			     							}
+
+
+								?>
+
+
+								</table>
+							</center>	
                  
-                <div class="row">
-                    		<div class="col-6" style="text-align:left;"> 
+                	<div class="row mt-4" style="justify-content: center; text-align: center;">
+
+                		
+                    		<div class="col-3" style="text-align:left;"> 
                       			<a  href="principal.php" class="btn btn-primary">Menú Principal</a>
-                      		</div>
-                    		<div class="col" style="text-align:right;"> 
+                      		</div><div class="col-3" style="text-align:right;"> 
                       			<a  href="usuario_consulta.php" class="btn btn-primary">Nueva Búsqueda</a>
                     		</div>
-                   		</div>  
-                </form>
+                   		  
+                   	</div>
+
+         
 
                 <?php
 

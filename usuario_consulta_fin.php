@@ -54,12 +54,12 @@
     </div>  
 
     <!-- CAJA AZUL -->
-    <div class="row mt-4 mb-4 g-4" style="justify-content: center; align-items: center;"> <!-- Div Cuadro -->
-      <div class="col col-sm-5" style="border-radius: 10px; background: linear-gradient(to bottom, royalblue, lightblue);">
+    <div class="row mt-2 mb-2 g-1" style="justify-content: center; align-items: center;"> <!-- Div Cuadro -->
+      <div class="col col-sm" style="border-radius: 10px; /*background: linear-gradient(to bottom, royalblue, lightblue);*/"> 
 
     
       <!-- MENU DE OPCIONES --> 
-        <div class="row mt-4 mb-3" id="caja_opciones" style="justify-content: center; align-items: center;">
+        <div class="row mt-2 mb-2" id="caja_opciones" style="justify-content: center; align-items: center;">
 
   	      <div class="col col-sm">  
 
@@ -67,7 +67,7 @@
               
               if ($_SESSION['Rol'] == 'ADMINISTRADOR') {
                 ?>
-                 <div class="col mt-5 mb-5">   
+                 <div class="col mt-2 mb-2">   
     
                   <?php
 
