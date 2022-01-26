@@ -88,7 +88,7 @@
                     $estado = 'cajaEstado'.$fila;
                       
 
-                    if ($_REQUEST[$estado]=='ACTIVO'){
+                    if ($_REQUEST[$estado]=='ACTIVO' && $_REQUEST[$usu] != $_SESSION['Usuario']) {
                         
                         ?>
 
@@ -168,27 +168,33 @@
               <?php
 
                     } else {
-                              ?>
+                              if ($_REQUEST[$usu] == $_SESSION['Usuario']) {
 
-                              <div class="alert alert-warning" role="alert">
-                          
-                              <strong>El usuario ya está dado de baja.</strong>
+                                ?>
+                                <div class="alert alert-danger" role="alert">
+                                  <strong>No puede dar de baja su propio usuario.</strong>
+                                </div>
+                                <?php
+                              }
+                              else {
 
-                          
-                            </div>
-                            <div class="row">
+                                ?>
+
+                                <div class="alert alert-warning" role="alert">                      
+                                  <strong>El usuario ya está dado de baja.</strong>
+                                </div>
+                                <?php
+                                  }
+                                  ?>
+                               <div class="row">
                                   <div class="col" style="text-align:center;"> 
                                     <a  href="principal.php" class="btn btn-primary">Volver al menú principal</a>
-                                 </div>
-                                 </div>
-                              <?php
-
-                    }
-                             
-   
+                                  </div>
+                              </div>
+                              <?php   
             
-                  }
-              else
+                            }
+             } else
               {
 
                 if ($_SESSION['Rol'] == 'OPERADOR') {
