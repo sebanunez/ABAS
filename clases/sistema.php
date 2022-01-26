@@ -376,6 +376,11 @@
 														<strong>No se encontraron resultados</strong>
 													
 													</div>
+											<div class="row">
+                  							  <div class="col-6" style="text-align:left;"> 
+                    							  <a  href="principal.php" class="btn btn-primary">Volver al menú principal</a>
+                   							 </div>
+                   							 </div>
 
 											<?php
 

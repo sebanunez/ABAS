@@ -76,28 +76,25 @@
               
               if ($_SESSION['Rol'] == 'ADMINISTRADOR') {
 
-                ?>
+                    $fila = $_REQUEST['cajaFila'];
+                    $usu = 'cajaUsuario'.$fila;
+                    $apynom = 'cajaApynom'.$fila;
+                    $dni = 'cajaDNI'.$fila;
+                    $dom = 'cajaDom'.$fila;
+                    $fijo = 'cajaFijo'.$fila;
+                    $movil = 'cajaMovil'.$fila;
+                    $mail = 'cajaMail'.$fila;
+                    $rol = 'cajaRol'.$fila;
+                    $estado = 'cajaEstado'.$fila;
+                    if ($_REQUEST[$estado]=='ACTIVO'){
 
-                 <div class="col mt-2 mb-2">   
+                      ?>
+
+                      <div class="col mt-2 mb-2">   
     
                  <form method="post" action="usuario_baja_fin.php">
 
-                  <?php
-
-                  	$fila = $_REQUEST['cajaFila'];
-
-					$usu = 'cajaUsuario'.$fila;
-					$apynom = 'cajaApynom'.$fila;
-					$dni = 'cajaDNI'.$fila;
-					$dom = 'cajaDom'.$fila;
-					$fijo = 'cajaFijo'.$fila;
-					$movil = 'cajaMovil'.$fila;
-					$mail = 'cajaMail'.$fila;
-					$rol = 'cajaRol'.$fila;
-					$estado = 'cajaEstado'.$fila;
-	
-
-                  ?>
+                  
 
                   <!-- La sig. línea es para almacenar el nombre de usuario, para la consulta de la siguiente página -->
                   <input type="hidden" value="<?php echo $_REQUEST[$usu] ?>" name="cajaUsuario">
@@ -161,15 +158,35 @@
                       <a  href="principal.php" class="btn btn-primary">Cancelar</a>
                     </div>
                     <div class="col" style="text-align:right;"> 
-                      <button type="submit" class="btn btn-primary">Dar de Baja</button>
+                      <button type="submit" class="btn btn-primary">Confirmar</button>
                     </div>
                     </div>
                 </form>
 
               </div>
-   
 
-            <?php
+              <?php
+
+                    } else {
+                              ?>
+
+                              <div class="alert alert-warning" role="alert">
+                          
+                              <strong>El usuario ya está dado de baja.</strong>
+
+                          
+                            </div>
+                            <div class="row">
+                                  <div class="col" style="text-align:center;"> 
+                                    <a  href="principal.php" class="btn btn-primary">Volver al menú principal</a>
+                                 </div>
+                                 </div>
+                              <?php
+
+                    }
+                             
+   
+            
                   }
               else
               {
