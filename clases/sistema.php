@@ -140,15 +140,36 @@
 				// Si encuentra la clave:
 				if ($reg['clave']==$cla) {
 					
-						// Inicio sesión con los datos ingresados:
-						session_start();
-						$_SESSION['Usuario'] = $usu;
-						$_SESSION['Rol'] = $reg['rol'];
+						
+						if ($reg['estado']=='ACTIVO') {
+						
 
-						// Verifico qué rol tiene el usuario y lo redirijo a su pantalla correspondiente:
-						/*if ($_SESSION['Rol'] == 'ADMINISTRADOR') {
-							*/
-							echo "<script language='javascript'>window.location='principal.php'</script>";
+								// Inicio sesión con los datos ingresados:
+								session_start();
+								$_SESSION['Usuario'] = $usu;
+								$_SESSION['Rol'] = $reg['rol'];
+
+								echo "<script language='javascript'>window.location='principal.php'</script>";
+
+
+						}
+
+						else
+
+						{
+
+								?>
+
+								<div class="alert alert-danger" role="alert">
+									Usuario dado de baja. Comuníquese con el administrador.
+								</div>
+								<a href="index.php" class="btn btn-primary">Volver al inicio</a>
+
+								<?php
+
+						}
+
+						
 
 					}
 
@@ -194,7 +215,7 @@
 			{
 
 				$this->conectar($conex);
-				//$control= 0; // 0 --> no hay resultados y 1 --> hay resultados
+				
 				?>
 				
 
@@ -240,15 +261,56 @@
 
 							<?php
 
-							$hay = false;
-							$fondo = false;
+							$hay = false;			// $hay es un booleano que indica si hay resultados en la búsqueda
+							$fondo = false;   // $fondo es un booleano que determina el color fondo de cada fila
+							$fila = 0;        // $fila sirve para identificar la fila con la que se va a trabajar
 
                   			while ($reg=$registros->fetch_array()) {
+
+ 	                 				$fila = $fila + 1;
+
+                  				$usu = "cajaUsuario".$fila;
+                  				$apynom = 'cajaApynom'.$fila;
+													$dni = 'cajaDNI'.$fila;
+													$dom = 'cajaDom'.$fila;
+													$fijo = 'cajaFijo'.$fila;
+													$movil = 'cajaMovil'.$fila;
+													$mail = 'cajaMail'.$fila;
+													$rol = 'cajaRol'.$fila;
+													$estado = 'cajaEstado'.$fila;
+
+													// A continuación se guardan los datos obtenidos en cada pasada para el formulario respectivo:
+
+                					?>
+                					
+                					
+                					<form method="post" action="usuario_baja.php">
+
+
+                						<input type="hidden" value="<?php echo $reg['nombre'] ?>" name="<?php echo $usu ?>">
+                						<input type="hidden" value="<?php echo $reg['apynom'] ?>" name="<?php echo $apynom ?>">
+                						<input type="hidden" value="<?php echo $reg['dni'] ?>" name="<?php echo $dni ?>">
+                						<input type="hidden" value="<?php echo $reg['domicilio'] ?>" name="<?php echo $dom ?>">
+                						<input type="hidden" value="<?php echo $reg['telFijo'] ?>" name="<?php echo $fijo ?>">
+                						<input type="hidden" value="<?php echo $reg['telMovil'] ?>" name="<?php echo $movil ?>">
+                						<input type="hidden" value="<?php echo $reg['email'] ?>" name="<?php echo $mail ?>">
+                						<input type="hidden" value="<?php echo $reg['rol'] ?>" name="<?php echo $rol ?>">
+                						<input type="hidden" value="<?php echo $reg['estado'] ?>" name="<?php echo $estado ?>">
+                						<input type="hidden" value="<?php echo $fila ?>" name="cajaFila">
+
+
+
+
+                					<?php  				
+
+                					// El siguiente IF sirve para determinar el tipo de fondo a aplicar:
 
                   			
                   				if (!$fondo) {
  								
-                  					?>
+                  						?>
+
+                  					
 
                   					<tr style="background: lightsteelblue;">
                   							<td style="border: 1px solid black; padding: 5px;"><?php echo $reg['nombre'] ?></td>
@@ -260,18 +322,19 @@
                   							<td style="border: 1px solid black; padding: 5px;"><?php echo $reg['email'] ?></td>
                   							<td style="border: 1px solid black; padding: 5px;"><?php echo $reg['rol'] ?></td>
                   							<td style="border: 1px solid black; padding: 5px;"><?php echo $reg['estado'] ?></td>
+                  							<td style="border: 1px solid black; padding: 5px;"><input type="submit" value="Dar de Baja" class="btn btn-primary"></td>
                   						</tr>
 
                   					<?php
 
- 									$fondo = true;
+ 														$fondo = true;
 								
-								}else{
+													} else {
     							
     								
-    								?>
+    												?>
 
-    								<tr style="background: lightblue;">
+    												<tr style="background: lightblue;">
                   							<td style="border: 1px solid black; padding: 5px;"><?php echo $reg['nombre'] ?></td>
                   							<td style="border: 1px solid black; padding: 5px;"><?php echo $reg['apynom'] ?></td>
                   							<td style="border: 1px solid black; padding: 5px;"><?php echo $reg['dni'] ?></td>
@@ -281,50 +344,38 @@
                   							<td style="border: 1px solid black; padding: 5px;"><?php echo $reg['email'] ?></td>
                   							<td style="border: 1px solid black; padding: 5px;"><?php echo $reg['rol'] ?></td>
                   							<td style="border: 1px solid black; padding: 5px;"><?php echo $reg['estado'] ?></td>
-                  						</tr>
+                  							<td style="border: 1px solid black; padding: 5px;"><input type="submit" value="Dar de Baja" class="btn btn-primary"></td>
+                  					</tr>
 
-    								<?php
+    												<?php
 
-    								$fondo = false;
+    												$fondo = false;
 								
-								}
+													}
+
+													?>
+
+													</form>
 
 
-                  			?>
-                  				<!-- <div class="row"> 
-
-                  					
-                  						<tr>
-                  							<td style="border: 1px solid black; padding: 5px;"><?php echo $reg['nombre'] ?></td>
-                  							<td style="border: 1px solid black; padding: 5px;"><?php echo $reg['apynom'] ?></td>
-                  							<td style="border: 1px solid black; padding: 5px;"><?php echo $reg['dni'] ?></td>
-                  							<td style="border: 1px solid black; padding: 5px;"><?php echo $reg['domicilio'] ?></td>
-                  							<td style="border: 1px solid black; padding: 5px;"><?php echo $reg['telFijo'] ?></td>
-                  							<td style="border: 1px solid black; padding: 5px;"><?php echo $reg['telMovil'] ?></td>
-                  							<td style="border: 1px solid black; padding: 5px;"><?php echo $reg['email'] ?></td>
-                  							<td style="border: 1px solid black; padding: 5px;"><?php echo $reg['rol'] ?></td>
-                  							<td style="border: 1px solid black; padding: 5px;"><?php echo $reg['estado'] ?></td>
-                  						</tr>
-                  					
-		                  		</div>   -->
-                  
-                  		
-
-                   							<?php
-
-                   							$hay = true; // Significa que hay al menos un resultado
+													<?php 
 
 
-                  							} // Fin While
+                  				$hay = true; // Significa que hay al menos un resultado
 
 
-                  							if (!$hay){  // Si no encontró resultados
+                  			} // Fin While
 
-                  								?>
 
-                  			               		<div class="alert alert-warning" role="alert">
-  													<strong>No se encontraron resultados</strong>
-												</div>
+                  			if (!$hay){  // Si no encontró resultados
+
+                  				?>
+
+                  				<div class="alert alert-warning" role="alert">
+  												
+														<strong>No se encontraron resultados</strong>
+													
+													</div>
 
 											<?php
 
@@ -355,6 +406,34 @@
               $this->desconectar($conex,$registros);
 
 			}
+
+
+
+			public function eliminarUsuario($usu) {
+
+				
+				$this->conectar($conex);
+
+				$registros = $conex->query("update usuario set estado='INACTIVO' where nombre='$usu'") or die($conex->error);
+
+				?>
+
+
+				<div class="alert alert-success" role="alert">
+  					El usuario <strong><?php echo $usu ?></strong> ha sido dado de baja. Su estado ahora es INACTIVO.
+  			</div>
+  			
+  			<!-- <a href="usuario_alta.php" class="btn btn-primary">Cargar otro usuario</a> -->
+  			<a href="principal.php" class="btn btn-primary">Volver al menú principal</a>
+
+
+				<?php			
+
+				$this->desconectar($conex,$registros);
+
+			}
+
+
 
 		}
 

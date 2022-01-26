@@ -40,7 +40,7 @@
   	<div class="row mt-4" id="leyenda" style="justify-content: center; align-items: center;
       ">
   	
-  	<div class="col-7" style="background-color: aqua; border-radius: 10px; font-size: 20px;">
+  	<div class="col-7" style="border-radius: 10px; font-size: 20px;">
  
   		<?php
 
