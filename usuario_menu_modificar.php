@@ -66,38 +66,44 @@
             <?php
               
               if ($_SESSION['Rol'] == 'ADMINISTRADOR') {
-                ?>
+                  
+                  ?>
                  <div class="col mt-5 mb-5">   
     
                  <form method="post" action="usuario_consulta_fin.php">
 
-                  <input type="hidden" class="form-control" name="cajaOrigen" value="CONSULTA">
                   <div class="mb-3">
-                    <div class="form-text mb-2" style="color: black; text-align: left; font-size: medium;">Seleccione el criterio de búsqueda:</div>
-                    <select id="inputState" class="form-select" aria-label="tipo" name="cajaCriterio">
-                        <option selected value="USUARIO">USUARIO</option>
-                        <option value="APELLIDO">APELLIDO</option>
-                        <option value="NOMBRE">NOMBRE</option>
-                        <option value="DNI">DNI (Sin Puntos)</option>
-                        <option value="ESTADO">ESTADO (Activo/Inactivo)</option>
-                      </select>
-                    </div>
-
-                  <div class="mb-3">
-                    <input type="text" required placeholder="Escriba aquí el texto a buscar" class="form-control" name="cajaBusqueda">
-                  </div>
-                  
-                  <div class="row">
-                    <div class="col-6" style="text-align:left;"> 
-                      <a  href="principal.php" class="btn btn-primary">Cancelar</a>
-                      </div>
-                    <div class="col" style="text-align:right;"> 
+                    <div class="form-text mb-2" style="color: black; text-align: left; font-size: medium;">Ingrese el nombre de usuario que desea modificar:</div>
+                    <input type="text" required placeholder="Ej: jperez" class="form-control" name="cajaBusqueda">
+                    <input type="hidden" class="form-control" name="cajaOrigen" value="MODIFICAR">
+                      <input type="hidden" class="form-control" name="cajaCriterio" value="USUARIO">
+                     <div class="col mt-2" style="text-align:center;"> 
                       <button type="submit" class="btn btn-primary">Buscar</button>
                     </div>
+                    </div>
+                  </form>
+                </div>
+                
+                <form method="post" action="usuario_consulta_fin.php">
+                  <div class="row">
+                  <div class="col-9" style="text-align: left; justify-content: flex-end;">
+                      <input type="hidden" class="form-control" name="cajaOrigen" value="MODIFICAR">
+                      <input type="hidden" class="form-control" name="cajaCriterio" value="ESTADO">
+                      <input type="hidden" class="form-control" name="cajaBusqueda" value="%ACTIVO">
+                      O puede elegirlo de la lista:
+                    </div>
+                    <div class="col-3 d-grid">
+                      <button type="submit" class="btn btn-primary">Ver Lista</button>
+                    </div>
                    </div>
-                </form>
-
-              </div>
+                   <br>
+                   <br>
+                   <div class="col" style="text-align:center;"> 
+                      <a  href="principal.php" class="btn btn-primary">Menu Principal</a>
+                      </div>
+                </form>             
+                
+                
    
 
             <?php

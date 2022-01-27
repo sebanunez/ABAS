@@ -1,6 +1,6 @@
 <?php 
 
-	include ("usuario.php");
+	//include ("usuario.php");
 
 	class Sistema {
 
@@ -210,7 +210,7 @@
 
 
 
-		public function consultar ($sist, $criterio, $busqueda)
+		public function consultar ($sist, $criterio, $busqueda, $origen)
 
 			{
 
@@ -238,7 +238,8 @@
                   			$registros = $conex->query("select * from usuario where dni='$busqueda'") or die($conex->error);
                   			break;
                   		case 'ESTADO':
-                  			$registros = $conex->query("select * from usuario where estado='$busqueda'") or die($conex->error);
+                  			$aux='%'.$busqueda;
+                  			$registros = $conex->query("select * from usuario where estado LIKE '$aux'") or die($conex->error);
                   			break;
                   				      	}
                  		               		
@@ -257,6 +258,13 @@
                   							<th style="border: 1px solid black; padding: 5px;">E-MAIL</th>
                   							<th style="border: 1px solid black; padding: 5px;">ROL</th>
                   							<th style="border: 1px solid black; padding: 5px;">ESTADO</th>
+                  							<?php
+                  								if ($origen != "CONSULTA") {
+                  									?>
+                  									<th style="border: 1px solid black; padding: 5px;">ACCIÓN</th>
+                  									<?php
+                  								}
+                  							?>
                   						</tr>
 
 							<?php
@@ -264,27 +272,30 @@
 							$hay = false;			// $hay es un booleano que indica si hay resultados en la búsqueda
 							$fondo = false;   // $fondo es un booleano que determina el color fondo de cada fila
 							$fila = 0;        // $fila sirve para identificar la fila con la que se va a trabajar
-
+							
                   			while ($reg=$registros->fetch_array()) {
 
  	                 				$fila = $fila + 1;
 
                   				$usu = "cajaUsuario".$fila;
                   				$apynom = 'cajaApynom'.$fila;
-													$dni = 'cajaDNI'.$fila;
-													$dom = 'cajaDom'.$fila;
-													$fijo = 'cajaFijo'.$fila;
-													$movil = 'cajaMovil'.$fila;
-													$mail = 'cajaMail'.$fila;
-													$rol = 'cajaRol'.$fila;
-													$estado = 'cajaEstado'.$fila;
-
-													// A continuación se guardan los datos obtenidos en cada pasada para el formulario respectivo:
+								$dni = 'cajaDNI'.$fila;
+								$dom = 'cajaDom'.$fila;
+								$fijo = 'cajaFijo'.$fila;
+								$movil = 'cajaMovil'.$fila;
+								$mail = 'cajaMail'.$fila;
+								$rol = 'cajaRol'.$fila;
+								$estado = 'cajaEstado'.$fila;
+								if ($origen == "BAJA") {$envioForm = 'usuario_baja.php';}
+									elseif ($origen == "MODIFICAR") {
+										$envioForm = 'usuario_modificar.php';
+									}
+								// A continuación se guardan los datos obtenidos en cada pasada para el formulario respectivo:
 
                 					?>
                 					
                 					
-                					<form method="post" action="usuario_baja.php">
+                					<form method="post" action="<?php echo $envioForm ?>">
 
 
                 						<input type="hidden" value="<?php echo $reg['nombre'] ?>" name="<?php echo $usu ?>">
@@ -298,14 +309,13 @@
                 						<input type="hidden" value="<?php echo $reg['estado'] ?>" name="<?php echo $estado ?>">
                 						<input type="hidden" value="<?php echo $fila ?>" name="cajaFila">
 
-
-
-
                 					<?php  				
 
-                					// El siguiente IF sirve para determinar el tipo de fondo a aplicar:
+                				
 
-                  			
+
+                				// El siguiente IF sirve para determinar el tipo de fondo a aplicar:
+                  				
                   				if (!$fondo) {
  								
                   						?>
@@ -322,7 +332,26 @@
                   							<td style="border: 1px solid black; padding: 5px;"><?php echo $reg['email'] ?></td>
                   							<td style="border: 1px solid black; padding: 5px;"><?php echo $reg['rol'] ?></td>
                   							<td style="border: 1px solid black; padding: 5px;"><?php echo $reg['estado'] ?></td>
-                  							<td style="border: 1px solid black; padding: 5px;"><input type="submit" value="Dar de Baja" class="btn btn-primary"></td>
+                  							<?php
+                  								if ($origen == "BAJA") {
+                  									?>
+                  									<td style="border: 1px solid black; padding: 5px;"><input type="submit" value="Dar de Baja" class="btn btn-primary"></td>
+                  									<?php
+                  								}
+                  								else {
+
+                  									if ($origen == "MODIFICAR") {
+
+                  										?>
+                  										<td style="border: 1px solid black; padding: 5px;"><input type="submit" value="Modificar" class="btn btn-primary"></td>
+                  										<?php
+
+                  											}
+
+                  									}
+                  							?>
+
+                  							
                   						</tr>
 
                   					<?php
@@ -344,7 +373,24 @@
                   							<td style="border: 1px solid black; padding: 5px;"><?php echo $reg['email'] ?></td>
                   							<td style="border: 1px solid black; padding: 5px;"><?php echo $reg['rol'] ?></td>
                   							<td style="border: 1px solid black; padding: 5px;"><?php echo $reg['estado'] ?></td>
-                  							<td style="border: 1px solid black; padding: 5px;"><input type="submit" value="Dar de Baja" class="btn btn-primary"></td>
+                  							<?php
+                  								if ($origen == "BAJA") {
+                  									?>
+                  									<td style="border: 1px solid black; padding: 5px;"><input type="submit" value="Dar de Baja" class="btn btn-primary"></td>
+                  									<?php
+                  								}
+                  								else {
+
+                  									if ($origen == "MODIFICAR") {
+
+                  										?>
+                  										<td style="border: 1px solid black; padding: 5px;"><input type="submit" value="Modificar" class="btn btn-primary"></td>
+                  										<?php
+
+                  											}
+
+                  									}
+                  							?>
                   					</tr>
 
     												<?php
@@ -376,11 +422,7 @@
 														<strong>No se encontraron resultados</strong>
 													
 													</div>
-											<div class="row">
-                  							  <div class="col-6" style="text-align:left;"> 
-                    							  <a  href="principal.php" class="btn btn-primary">Volver al menú principal</a>
-                   							 </div>
-                   							 </div>
+											
 
 											<?php
 
@@ -438,6 +480,39 @@
 
 			}
 
+
+			public function modificarUsuario($usu) {
+
+				
+				$this->conectar($conex);
+				$nombreUsuario= $usu-> getNombre();
+				$apynom= $usu-> getApyNom();
+				$dni= $usu-> getDni();
+				$domicilio= $usu-> getDomicilio();
+				$telFijo= $usu-> getTelFijo();
+				$telMovil= $usu-> getTelMovil();
+				$mail= $usu-> getmail();
+				$rol= $usu-> getRol();
+				$estado= $usu-> getEstado();
+
+				$registros = $conex->query("update usuario set apynom='$apynom', dni= '$dni', domicilio= '$domicilio', telFijo= '$telFijo', telMovil= '$telMovil', email= '$mail', rol= '$rol', estado= '$estado' where nombre='$nombreUsuario'") or die($conex->error);
+
+				?>
+
+
+				<div class="alert alert-success" role="alert">
+  					El usuario <strong><?php echo $nombreUsuario ?></strong> ha sido modificado correctamente.
+  			</div>
+  			
+  			<!-- <a href="usuario_alta.php" class="btn btn-primary">Cargar otro usuario</a> -->
+  			<a href="principal.php" class="btn btn-primary">Volver al menú principal</a>
+
+
+				<?php			
+
+				$this->desconectar($conex,$registros);
+
+			}
 
 
 		}

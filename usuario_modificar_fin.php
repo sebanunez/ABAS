@@ -54,50 +54,56 @@
     </div>  
 
     <!-- CAJA AZUL -->
-    <div class="row mt-4 mb-4 g-4" style="justify-content: center; align-items: center;"> <!-- Div Cuadro -->
+    <div class="row mt-2 mb-2 g-4" style="justify-content: center; align-items: center;"> <!-- Div Cuadro -->
       <div class="col col-sm-5" style="border-radius: 10px; background: linear-gradient(to bottom, royalblue, lightblue);">
 
+    <!-- LEYENDA -->
+  	   <div class="row mt-4" id="leyenda" style="justify-content: center; align-items: center;">
+  	
+    	   <div class="col-7" style="background-color: aqua; border-radius: 10px; font-size: 20px;">
+    		 Menú Principal
+    	   </div>
     
+        </div>
+
+
       <!-- MENU DE OPCIONES --> 
-        <div class="row mt-4 mb-3" id="caja_opciones" style="justify-content: center; align-items: center;">
+        <div class="row mt-4 mb-1" id="caja_opciones" style="justify-content: center; align-items: center;">
 
   	      <div class="col col-sm">  
 
             <?php
               
               if ($_SESSION['Rol'] == 'ADMINISTRADOR') {
+
                 ?>
-                 <div class="col mt-5 mb-5">   
+
+                <div class="col mt-2 mb-2">   
     
-                 <form method="post" action="usuario_consulta_fin.php">
+                  <?php
 
-                  <input type="hidden" class="form-control" name="cajaOrigen" value="CONSULTA">
-                  <div class="mb-3">
-                    <div class="form-text mb-2" style="color: black; text-align: left; font-size: medium;">Seleccione el criterio de búsqueda:</div>
-                    <select id="inputState" class="form-select" aria-label="tipo" name="cajaCriterio">
-                        <option selected value="USUARIO">USUARIO</option>
-                        <option value="APELLIDO">APELLIDO</option>
-                        <option value="NOMBRE">NOMBRE</option>
-                        <option value="DNI">DNI (Sin Puntos)</option>
-                        <option value="ESTADO">ESTADO (Activo/Inactivo)</option>
-                      </select>
-                    </div>
-
-                  <div class="mb-3">
-                    <input type="text" required placeholder="Escriba aquí el texto a buscar" class="form-control" name="cajaBusqueda">
-                  </div>
+                  include ("clases/sistema.php");
+                  include ("clases/usuario.php");
+                  $sist = new Sistema();
+                  $usu = new Usuario();
+                  $usu -> setNombre($_REQUEST['cajaUsuario']);
+                  $usu -> setApyNom ($_REQUEST['cajaApyNom']);
+                  $usu -> setDni ($_REQUEST['cajaDNI']);
+                  $usu -> setDomicilio ($_REQUEST['cajaDomicilio']);
+                  $usu -> setTelFijo ($_REQUEST['cajaTelFijo']);
+                  $usu -> setTelMovil ($_REQUEST['cajaTelMovil']);
+                  $usu -> setMail ($_REQUEST['cajaEmail']);
+                  $usu -> setRol ($_REQUEST['cajaRol']);
+                  $usu -> setEstado ($_REQUEST['cajaEstado']); 
                   
-                  <div class="row">
-                    <div class="col-6" style="text-align:left;"> 
-                      <a  href="principal.php" class="btn btn-primary">Cancelar</a>
-                      </div>
-                    <div class="col" style="text-align:right;"> 
-                      <button type="submit" class="btn btn-primary">Buscar</button>
-                    </div>
-                   </div>
-                </form>
+                  $sist->modificarUsuario($usu);					           
+					
+	
 
-              </div>
+                  ?>
+
+                  
+                </div>
    
 
             <?php

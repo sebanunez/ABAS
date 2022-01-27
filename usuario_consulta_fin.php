@@ -76,7 +76,8 @@
                     $sist = new Sistema();
                     $criterio = $_REQUEST['cajaCriterio'];
                     $busqueda = $_REQUEST['cajaBusqueda'];
-                    $sist->consultar ($sist, $criterio, $busqueda);
+                    $origen = $_REQUEST['cajaOrigen'];
+                    $sist->consultar ($sist, $criterio, $busqueda, $origen);
 
                     ?>
 

@@ -130,7 +130,7 @@
                            <p>Administración de las cuentas de usuario con acceso a este sistema.</p> 
                            <a href="usuario_alta.php" class="btn btn-primary">ALTA</a>
                            <a href="usuario_menu_baja.php" class="btn btn-primary">BAJA</a>
-                           <a href="" class="btn btn-primary">MODIFICAR</a>
+                           <a href="usuario_menu_modificar.php" class="btn btn-primary">MODIFICAR</a>
                            <a href="usuario_consulta.php" class="btn btn-primary">CONSULTA</a>
                         </div>
  

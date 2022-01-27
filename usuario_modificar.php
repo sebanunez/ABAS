@@ -86,15 +86,12 @@
                     $mail = 'cajaMail'.$fila;
                     $rol = 'cajaRol'.$fila;
                     $estado = 'cajaEstado'.$fila;
-                      
-
-                    if ($_REQUEST[$estado]=='ACTIVO' && $_REQUEST[$usu] != $_SESSION['Usuario']) {
-                        
+                                        
                         ?>
 
                         <div class="col mt-2 mb-2">   
     
-                        <form method="post" action="usuario_baja_fin.php">
+                        <form method="post" action="usuario_modificar_fin.php">
               
                         <!-- La sig. línea es para almacenar el nombre de usuario, para la consulta de la siguiente página -->
                         <input type="hidden" value="<?php echo $_REQUEST[$usu] ?>" name="cajaUsuario">
@@ -108,51 +105,88 @@
                         <div class="row mb-2 g-2" style="justify-content: center; align-items: flex-end;">
                           <div class="col-3 form-text mb-1" style="color: black; text-align: left;">Apellido y Nombre:
                           </div>
-                        <input type="text" class="col form-control" value="<?php echo $_REQUEST[$apynom] ?>" disabled>
+                        <input type="text" class="col form-control" value="<?php echo $_REQUEST[$apynom] ?>" name="cajaApyNom">
                         </div>
  
                         <div class="row mb-2 g-2" style="justify-content: center; align-items: flex-end;">
                           <div class="col-3 form-text mb-1" style="color: black; text-align: left;">DNI:
                           </div>
-                            <input type="text" class="col form-control" value="<?php echo $_REQUEST[$dni] ?>" disabled>
+                            <input type="text" class="col form-control" value="<?php echo $_REQUEST[$dni] ?>" name="cajaDNI">
                           </div>
 
                         <div class="row mb-2 g-2" style="justify-content: center; align-items: flex-end;">
                           <div class="col-3 form-text mb-1" style="color: black; text-align: left;">Domicilio:
                           </div>
-                            <input type="text" class="col form-control" value="<?php echo $_REQUEST[$dom] ?>" disabled>
+                            <input type="text" class="col form-control" value="<?php echo $_REQUEST[$dom] ?>"name="cajaDomicilio">
                           </div>
 
                         <div class="row mb-2 g-2" style="justify-content: center; align-items: flex-end;">
                             <div class="col-3 form-text mb-1" style="color: black; text-align: left;">Teléfono Fijo:
                           </div>
-                          <input type="text" class="col form-control" value="<?php echo $_REQUEST[$fijo] ?>" disabled>
+                          <input type="text" class="col form-control" value="<?php echo $_REQUEST[$fijo] ?>"name="cajaTelFijo">
                         </div>
 
                         <div class="row mb-2 g-2" style="justify-content: center; align-items: flex-end;">
                           <div class="col-3 form-text mb-1" style="color: black; text-align: left;">Teléfono móvil:
                         </div>
-                          <input type="text" class="col form-control" value="<?php echo $_REQUEST[$movil] ?>" disabled>
+                          <input type="text" class="col form-control" value="<?php echo $_REQUEST[$movil] ?>" name="cajaTelMovil">
                         </div>
 
                         <div class="row mb-2 g-2" style="justify-content: center; align-items: flex-end;">
                           <div class="col-3 form-text mb-1" style="color: black; text-align: left;">E-mail:
                           </div>
-                          <input type="email" class="col form-control" value="<?php echo $_REQUEST[$mail] ?>" disabled>
+                          <input type="email" class="col form-control" value="<?php echo $_REQUEST[$mail] ?>" name="cajaEmail">
                           </div>
 
                         <div class="row mb-2 g-2" style="justify-content: center; align-items: flex-end;">
                           <div class="col-3 form-text mb-1" style="color: black; text-align: left;">Rol:
                           </div>
-                          <input type="text" class="col form-control" value="<?php echo $_REQUEST[$rol] ?>" disabled>
-                            </div>
+                          <div class="col-9">
+                          <?php
+                          if ($_REQUEST[$rol] == "OPERADOR") {
+                            ?>
+                            <select id="inputState" class="form-select" aria-label="tipo" name="cajaRol">
+                              <option selected value="OPERADOR">OPERADOR</option>
+                              <option value="ADMINISTRADOR">ADMINISTRADOR</option>
+                            </select>
+                            <?php
+                           }   
+                           else {
 
+                                ?>
+                                <select id="inputState" class="form-select" aria-label="tipo" name="cajaRol">
+                                  <option selected value="ADMINISTRADOR">ADMINISTRADOR</option>
+                                  <option value="OPERADOR">OPERADOR</option>
+                                </select>
+                                <?php
+
+                                }
+                                ?>
+                            </div>
+                            </div>
+                          
                         <div class="row mb-2 g-2" style="justify-content: center; align-items: flex-end;">
                           <div class="col-3 form-text mb-1" style="color: black; text-align: left;">Estado:</div>
-                          <input type="text" class="col form-control" value="<?php echo $_REQUEST[$estado] ?>" disabled>
+                          <div class="col-9">
+                          <?php
+                          if ($_REQUEST[$estado] == "ACTIVO") {  
+                            ?>
+                            <input type="text" class="col form-control" value="<?php echo $_REQUEST[$estado] ?>" disabled name="cajaEstado">
+                            <?php
+                            }
+                            else {
+
+                              ?>
+                              <select id="inputState" class="form-select" aria-label="tipo" name="cajaEstado">
+                                  <option selected value="INACTIVO">INACTIVO</option>
+                                  <option value="ACTIVO">ACTIVO</option>
+                                </select>
+                              <?php
+                                }
+                          ?>
                           </div>                 
 
-                        <div class="row">
+                        <div class="row mt-4">
                           <div class="col-6" style="text-align:left;"> 
                             <a  href="principal.php" class="btn btn-primary">Cancelar</a>
                           </div>
@@ -167,33 +201,7 @@
 
               <?php
 
-                    } else {
-                              if ($_REQUEST[$usu] == $_SESSION['Usuario']) {
-
-                                ?>
-                                <div class="alert alert-danger" role="alert">
-                                  <strong>No puede dar de baja su propio usuario.</strong>
-                                </div>
-                                <?php
-                              }
-                              else {
-
-                                ?>
-
-                                <div class="alert alert-warning" role="alert">                      
-                                  <strong>El usuario ya está dado de baja.</strong>
-                                </div>
-                                <?php
-                                  }
-                                  ?>
-                               <div class="row">
-                                  <div class="col" style="text-align:center;"> 
-                                    <a  href="principal.php" class="btn btn-primary">Volver al menú principal</a>
-                                  </div>
-                              </div>
-                              <?php   
-            
-                            }
+                     
              } else
               {
 
