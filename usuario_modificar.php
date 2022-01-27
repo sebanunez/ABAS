@@ -170,8 +170,9 @@
                           <div class="col-9">
                           <?php
                           if ($_REQUEST[$estado] == "ACTIVO") {  
-                            ?>
-                            <input type="text" class="col form-control" value="<?php echo $_REQUEST[$estado] ?>" disabled name="cajaEstado">
+                            ?>                             
+                            <input type="text" class="col form-control" value="<?php echo $_REQUEST[$estado] ?>" disabled>
+                            <input type="hidden" class="col form-control" value="<?php echo $_REQUEST[$estado] ?>" name="cajaEstado">
                             <?php
                             }
                             else {
