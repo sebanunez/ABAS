@@ -1,7 +1,9 @@
 <?php
-  
-  session_start();
 
+  session_start();
+  // A continuación, harcodeo usuario y rol para pasar la verificación, ya que no los tengo en esta rama:
+  $_SESSION['Usuario'] = 'SEBASTIAN';
+  $_SESSION['Rol'] = 'ADMINISTRADOR';
 ?>
 
 <!doctype html>

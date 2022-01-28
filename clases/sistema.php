@@ -96,6 +96,152 @@
 		}  // FIN FUNCIÓN crearSolicitud
 
 
+		public function consultarSolicitud ($sist)
+
+			{
+
+				$this->conectar($conex);
+				
+				$registros = $conex->query("select * from solicitante where estado LIKE 'PENDIENTE'") or die($conex->error);
+                  			
+                ?>
+                 		
+				<center>
+                	<table style="text-align: center; box-shadow: 5px 5px 5px grey;">
+
+                  		<tr style="background: royalblue; color: white;">
+                  			<th style="border: 1px solid black; padding: 5px;">NÚMERO</th>
+                  			<th style="border: 1px solid black; padding: 5px;">INSTITUCIÓN</th>
+                  			<th style="border: 1px solid black; padding: 5px;">REFERENTE</th>
+                  			<th style="border: 1px solid black; padding: 5px;">FECHA</th>
+                  			<th style="border: 1px solid black; padding: 5px;">HORA</th>
+                  			<th style="border: 1px solid black; padding: 5px;">ACCIÓN</th>
+                  	    </tr>
+
+						<?php
+
+						$hay = false;			// $hay es un booleano que indica si hay resultados en la búsqueda
+						$fondo = false;   // $fondo es un booleano que determina el color fondo de cada fila
+						$fila = 0;        // $fila sirve para identificar la fila con la que se va a trabajar
+							
+                  		while ($reg=$registros->fetch_array()) {
+
+ 	                 		$fila = $fila + 1;
+               				$solic = 'cajaSolicitud'.$fila;
+               				$insti = 'cajaInstitucion'.$fila;
+							$refer = 'cajaReferente'.$fila;
+							$fecha = 'cajaFecha'.$fila;
+							$hora = 'cajaHora'.$fila;
+							
+							// A continuación se guardan los datos obtenidos en cada pasada para el formulario respectivo:
+
+                			?>
+                					
+                			<form method="post" action="solicitud_detalle.php">
+
+                				<input type="hidden" value="<?php echo $reg['id'] ?>" name="<?php echo $solic ?>">
+                				<input type="hidden" value="<?php echo $reg['nombre'] ?>" name="<?php echo $insti ?>">
+                				<input type="hidden" value="<?php echo $reg['nomReferente'] ?>" name="<?php echo $refer ?>">
+                				<input type="hidden" value="<?php echo $reg['fecha'] ?>" name="<?php echo $fecha ?>">
+                				<input type="hidden" value="<?php echo $reg['hora'] ?>" name="<?php echo $hora ?>">
+                				<input type="hidden" value="<?php echo $reg['telMovil'] ?>" name="<?php echo $movil ?>">
+                					
+                				<?php  				
+              				
+                				// El siguiente IF sirve para determinar el tipo de fondo a aplicar:
+                  				
+                  				if (!$fondo) {
+ 								
+                  					?>
+
+                  					<tr style="background: lightsteelblue;">
+                  							
+                  						<td style="border: 1px solid black; padding: 5px;"><?php echo $reg['id'] ?></td>
+                  						<td style="border: 1px solid black; padding: 5px;"><?php echo $reg['nombre'] ?></td>
+                  						<td style="border: 1px solid black; padding: 5px;"><?php echo $reg['nomReferente'] ?></td>
+                  						<td style="border: 1px solid black; padding: 5px;"><?php echo $reg['fecha'] ?></td>
+                  						<td style="border: 1px solid black; padding: 5px;"><?php echo $reg['hora'] ?></td>
+                  						<td style="border: 1px solid black; padding: 5px;"><input type="submit" value="Ver Solicitud" class="btn btn-primary"></td>
+                  					
+                  					</tr>
+
+                  					<?php
+
+ 									$fondo = true;
+								
+								} else {
+    							
+    								?>
+
+    								<tr style="background: lightblue;">
+                  							
+                  						<td style="border: 1px solid black; padding: 5px;"><?php echo $reg['id'] ?></td>
+                  						<td style="border: 1px solid black; padding: 5px;"><?php echo $reg['nombre'] ?></td>
+                  						<td style="border: 1px solid black; padding: 5px;"><?php echo $reg['nomReferente'] ?></td>
+                  						<td style="border: 1px solid black; padding: 5px;"><?php echo $reg['fecha'] ?></td>
+                  						<td style="border: 1px solid black; padding: 5px;"><?php echo $reg['hora'] ?></td>
+                  						<td style="border: 1px solid black; padding: 5px;"><input type="submit" value="Ver Solicitud" class="btn btn-primary"></td>
+                  					
+                  					</tr>
+
+    								<?php
+
+    								$fondo = false;
+								
+								}
+
+								?>
+
+							</form>
+
+							<?php 
+
+                  			$hay = true; // Significa que hay al menos un resultado
+
+                  		} // Fin While
+
+
+                  		if (!$hay) {  // Si no encontró resultados
+
+                  			?>
+
+                  			<div class="alert alert-warning" role="alert">
+  												
+								<strong>No hay solicitudes pendientes.</strong>
+													
+							</div>
+											
+							<?php
+
+			     		}
+
+						?>
+
+					</table>
+				</center>	
+                 
+                <div class="row mt-4" style="justify-content: center; text-align: center;">
+
+                	<div class="col-3" style="text-align:center;"> 
+                      			
+                      	<a  href="principal.php" class="btn btn-primary">Menú Principal</a>
+                     
+                    </div>
+
+                    <!-- <div class="col-3" style="text-align:right;"> 
+                      			<a  href="usuario_consulta.php" class="btn btn-primary">Nueva Búsqueda</a>
+                    		</div> -->
+                   		  
+                </div>
+
+         		<?php
+
+              	$this->desconectar($conex,$registros);
+
+			}
+
+
+
 	}
 
 	
